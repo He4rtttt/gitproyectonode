@@ -9,11 +9,13 @@ let productos = [
     { id: 3, nombre: 'Producto 3', precio: 30 }
 ];
 
-app.get('/productos', (req, res) => {
+// GET request to list all products
+app.get('/productos/listar', (req, res) => {
     res.json(productos);
 });
 
-app.post('/productos', (req, res) => {
+// POST request to add a new product
+app.post('/productos/agregar', (req, res) => {
     const newProducto = {
         id: productos.length + 1,
         nombre: req.body.nombre,
@@ -23,7 +25,8 @@ app.post('/productos', (req, res) => {
     res.status(201).json(newProducto);
 });
 
-app.put('/productos/:id', (req, res) => {
+// PUT request to update a product by ID
+app.put('/productos/actualizar/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const producto = productos.find(p => p.id === id);
 
@@ -37,7 +40,8 @@ app.put('/productos/:id', (req, res) => {
     res.json(producto);
 });
 
-app.delete('/productos/:id', (req, res) => {
+// DELETE request to remove a product by ID
+app.delete('/productos/eliminar/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const productoIndex = productos.findIndex(p => p.id === id);
 
